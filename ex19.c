@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <time.h>
-#define MAX 1080
+#define MAX 1080  /*valor maximo de linhas e tambem colunas das matrizes*/
 
-typedef struct mt_matriz
+typedef struct mt_matriz    /* definindo um tipo struct composto por duas matrizes de float*/
 {
     float mat1[MAX][MAX], mat2[MAX][MAX];
 }Mcalc;
@@ -13,7 +13,7 @@ void* preenche2(void* arg2);
 int main(void)
 {
     clock_t t1, t2;
-    float tempo;
+    float tempo;  /*variavel que armazena o tempo de execução do programa*/
 
     Mcalc *matriz;
     pthread_t *th1,*th2,t[8];
@@ -24,7 +24,7 @@ int main(void)
     pthread_create(th2, NULL, preenche2, (void*) matriz);
 }
 
-void* preenche1(void* arg1)
+void* preenche1(void* arg1)   /*função que prenche matriz*/
 {
     int i,j;
     Mcalc *matriz = (Mcalc*) arg1 ;
