@@ -35,10 +35,14 @@ void* preenche1(void* arg1)   /*função que prenche matriz*/
     return NULL;
 }
 
+void* preenche2(void* arg2)   /*função que prenche a matriz 2*/
+{
+    int i,j;
+    Mcalc *matriz = (Mcalc*) arg2 ;
 
-
-
-
-
-
+    for(i=0;i<MAX;i++)
+        for(j=0;j<MAX;j++)
+            matriz->mat2[i][j] = rand()%MAX;
+    return NULL;
+}
 
