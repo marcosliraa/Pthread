@@ -15,6 +15,7 @@ typedef struct mt     /* definindo um tipo struct */
 void* preenche1(void* arg1);
 void* preenche2(void* arg2);
 void divide(int n, struct mt *m);
+void *runner (void* arg3);
 int main(void)
 {
     int i,j,k;
@@ -110,4 +111,20 @@ void divide(int n,struct mt *m)
             m->md[i]=div;
         m->md[n]+= resto;
     }
+}
+void* runner (void* arg3)
+{
+    struct mt *matriz = arg3;
+    int n,k, valor=0;
+    while((matriz->l) < (matriz->conta))
+    {
+        for(k=0; k<MAX; k++)
+        {
+            for(n=0; n<MAX; n++)
+                valor += matriz->mat1[matriz->l][n] * matriz->mat2[n][k];
+            matriz->mat3[matriz->l][k];
+        }
+        matriz->l++;
+    }
+    return NULL;
 }
