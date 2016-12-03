@@ -40,8 +40,33 @@ int main(void)
     {
         matriz->md[i]=0;
     }
+
+
+    for(k=0; k<8;k++)
+    {
+        t1=clock() ;
+        divide(k+1,matriz);
+        matriz->l=0;
+        matriz->conta = 0;
+        for(i=0;i<k;i++)
+        {
+            matriz->conta += matriz->md[i];
+            pthread_create(&t[i], &attr, runner, matriz);
+        }
+
+        for(j=0;j <k ;j++)
+            pthread_join(t[j],NULL);
+
+        t2=clock();
+        tempo[i]= ((double)(t2-t1)/CLOCKS_PER_SEC);
+    }
+    for(i=0;i<8;i++)
+        printf("com %d threads | %.4f segundos\n",i+1,tempo[i]);
+
     return 0;
 }
+
+
 
 
 }
