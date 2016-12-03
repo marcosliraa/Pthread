@@ -17,7 +17,7 @@ int main(void)
 
     Mcalc *matriz;
     pthread_t *th1,*th2,t[8];
-    
+
     srand(time(NULL)); /*recebendo um valor aleatorio da função time*/
 
     pthread_create(th1, NULL, preenche1, (void*) matriz);
@@ -36,12 +36,27 @@ void* preenche1(void* arg1)   /*função que prenche matriz*/
             matriz->mat1[i][j] = rand()%MAX;
         }
     }
-        return NULL;
+    return NULL;
 }
 
 
 
-
+void* runner (void* arg3)
+{
+    struct mt *matriz = arg3;
+    int n,k, valor=0;
+    while((matriz->l) < (matriz->conta))
+    {
+        for(k=0; k<MAX; k++)
+        {
+            for(n=0; n<MAX; n++)
+                valor += matriz->mat1[matriz->l][n] * matriz->mat2[n][k];
+            matriz->mat3[matriz->l][k];
+        }
+        matriz->l++;
+    }
+    return NULL;
+}
 
 
 
