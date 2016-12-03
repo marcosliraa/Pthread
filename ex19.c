@@ -11,11 +11,11 @@ typedef struct mt     /* definindo um tipo struct */
     int l , conta;  /* l indica a linha atual e conta indica o numero de linhas totais para aquela thread */
 };
 
-};
 void* preenche1(void* arg1);
 void* preenche2(void* arg2);
 void divide(int n, struct mt *m);
 void *runner (void* arg3);
+
 int main(void)
 {
     int i,j,k;
@@ -23,7 +23,7 @@ int main(void)
     float tempo[8];  /*variavel que armazena o tempo de execução do programa*/
 
     struct mt *matriz = (struct mt*) malloc(sizeof(struct mt));
-    pthread_t *th1,*th2,t[8];
+    pthread_t th1,th2,t[8];
     pthread_attr_t attr;
     pthread_attr_init(&attr);
 
@@ -31,8 +31,8 @@ int main(void)
 
     printf("Processando, aguarde alguns segundos... \n");
 
-    pthread_create(th1, &attr, preenche1, (void*) matriz);
-    pthread_create(th2, &attr, preenche2, (void*) matriz);
+    pthread_create(&th1, &attr, preenche1,  matriz);
+    pthread_create(&th2, &attr, preenche2,  matriz);
 
 
     matriz->l=0;
@@ -67,10 +67,6 @@ int main(void)
     return 0;
 }
 
-
-
-
-}
 
 void* preenche1(void* arg1)   /*função que prenche matriz*/
 {
